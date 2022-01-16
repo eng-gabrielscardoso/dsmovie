@@ -31,9 +31,13 @@ function Listing() {
       });
   }, [pageNumber])
 
+  function handlePageChange(newPageNumber: number) {
+    setPageNumber(newPageNumber);
+  };
+
   return (
     <>
-      <Pagination />
+      <Pagination page={page} onChange={handlePageChange}/>
       <div className="container">
         <div className="row">
           {page.content.map((movie) => {
@@ -43,6 +47,11 @@ function Listing() {
               </div>
             );
           })}
+        </div>
+        <div className="d-flex justify-content-center mb-4">
+          <span className="displayedMovies">
+            {`Exibindo ${page.size} de ${page.totalElements} filmes`}
+          </span>
         </div>
       </div>
     </>
